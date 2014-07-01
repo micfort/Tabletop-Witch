@@ -1,0 +1,30 @@
+\ifthenelse{\equal{#1}{<Name>}}{
+    \def\MonsterName{<Name>}
+    \def\MonsterXP{<XP>}
+    \def\MonsterLevel{<Level>}
+	\def\MonsterType{<Type>}
+    \def\MonsterRole{<Role>}
+	\def\MonsterGroupRole{<GroupRole>}
+    \def\MonsterSize{<Size>}
+	\def\MonsterOrigin{<Origin>}
+	\def\MonsterInitiative{<Initiative>}
+	\def\MonsterPerception{<Perception>}
+	\def\MonsterHP{<HP>}
+	\def\MonsterAC{<AC>}
+	\def\MonsterFort{<Fort>}
+	\def\MonsterRefl{<Refl>}
+	\def\MonsterWill{<Will>}
+	\def\MonsterSpeed{<Speed>}
+	\def\MonsterKeywords{<Keywords>}
+	\def\MonsterAlignment{<Alignment>}
+
+	%\undef{\MonsterPowers}
+	<Powers>
+
+	\def\MonsterStr{<Str>}
+	\def\MonsterCon{<Con>}
+	\def\MonsterDex{<Dex>}
+	\def\MonsterInt{<Int>}
+	\def\MonsterWis{<Wis>}
+	\def\MonsterCha{<Cha>}
+}{}
