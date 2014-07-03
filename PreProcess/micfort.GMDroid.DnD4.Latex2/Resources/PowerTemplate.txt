@@ -1,6 +1,0 @@
-\listadd{\MonsterPowers}
-{
-	\def\PowerName{<Name>}
-	\def\PowerAction{<Action>}
-	\def\PowerUsage{<Usage>}
-}
