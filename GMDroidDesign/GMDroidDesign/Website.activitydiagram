@@ -1,0 +1,177 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<activityRootModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm10="http://schemas.microsoft.com/dsltools/SimpleShapesModel" dslVersion="1.0.0.0" Id="9eb50e3d-2243-4049-a22a-b2ad811fea25" name="Website" linkedPackageId="097e7f8c-7366-4d02-bace-4d7b7defda98" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner">
+  <ownedCommentsInternal>
+    <comment Id="497e69f8-53ac-480e-ac1a-2249c1013832">
+      <elementDefinition Id="730a3889-2d15-42d3-96c0-a8a03c4411ca" />
+      <body>1 Pagina</body>
+    </comment>
+  </ownedCommentsInternal>
+  <profileInstances>
+    <packageHasProfileInstances Id="54f46e09-3f39-492a-b2f2-5dfbf3bd4fc5">
+      <profileInstance Id="c5b14e7e-24e1-4b4b-915b-e159066ee561" name="StandardProfileL2">
+        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+      </profileInstance>
+      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="cc9dd21d-1f7b-4107-ac1b-1ed87ab3e28d">
+      <profileInstance Id="2242200f-5a4a-438e-aef0-26bd7eb7433c" name="StandardProfileL3">
+        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+      </profileInstance>
+      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <activityRootModelHasActivity>
+      <activity Id="b33bf6f5-aa73-437c-ad51-a6cfaf5235ab" name="Website" isAbstract="false" isLeaf="false" isActiveClass="false" isReentrant="false" isReadOnly="false" isSingleExecution="false">
+        <elementDefinition Id="a26e12bf-bde6-4867-b411-bc2109e01b11" />
+        <nodes>
+          <objectNode Id="e79bacfe-3df3-47d0-a7da-1c45a8ee9962" name="Home" isLeaf="false" ordering="Unordered" isControlType="false">
+            <elementDefinition Id="b0c12389-13b5-4a0c-a24d-9b46b918446d" />
+            <objectFlowTargets>
+              <objectFlow Id="aa55dce7-6e7e-429f-95fa-aeaa1d74e6fa" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <objectNodeMoniker Id="b9bd4bc9-5fe2-4778-8828-150aa06e4107" LastKnownName="Features" />
+                <elementDefinition Id="48ac3a86-63e9-4f83-ba15-8cad6c32e783" />
+              </objectFlow>
+              <objectFlow Id="9ae2eb3f-ad7a-4922-8036-3bcd5deff22e" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <objectNodeMoniker Id="a8eb4d6f-d7ba-4c54-b76b-3adc320e78b2" LastKnownName="Login/register" />
+                <elementDefinition Id="a5fcc8a2-73e6-463c-9e67-e4e03016f04a" />
+              </objectFlow>
+              <objectFlow Id="f9f619ba-e91a-41e5-b0eb-dd1abbf7b793" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <objectNodeMoniker Id="418c0eaf-c726-4f44-8eee-1338740b8bec" LastKnownName="Search" />
+                <elementDefinition Id="ba0ea809-6b64-47f6-934e-1f4e251d3a79" />
+              </objectFlow>
+              <objectFlow Id="af70c251-d8a9-4aed-b21f-0aa458c388f0" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <objectNodeMoniker Id="28ad5b69-e66f-4616-97c1-b8735b569ed6" LastKnownName="Sets" />
+                <elementDefinition Id="0f9b807c-1d4e-4e78-a07d-e0d11aece39b" />
+              </objectFlow>
+            </objectFlowTargets>
+            <upperBound>
+              <literalInteger Id="661802c5-aeb1-4571-9307-b18aea0408be" name="2147483647" value="2147483647">
+                <elementDefinition Id="8beeb8e8-79eb-48ce-9904-9718ba46e1b3" />
+              </literalInteger>
+            </upperBound>
+          </objectNode>
+          <objectNode Id="a8eb4d6f-d7ba-4c54-b76b-3adc320e78b2" name="Login/register" isLeaf="false" ordering="Unordered" isControlType="false">
+            <elementDefinition Id="0154442e-27ed-485c-9925-86c046b41910" />
+            <upperBound>
+              <literalInteger Id="63ff6052-a921-40c0-ba28-661aeddef7f9" name="2147483647" value="2147483647">
+                <elementDefinition Id="b638af35-cb7c-4158-b33b-597a512949fd" />
+              </literalInteger>
+            </upperBound>
+          </objectNode>
+          <objectNode Id="418c0eaf-c726-4f44-8eee-1338740b8bec" name="Search" isLeaf="false" ordering="Unordered" isControlType="false">
+            <elementDefinition Id="8e2cf260-214e-4edc-8799-df1b1f2776c6" />
+            <objectFlowTargets>
+              <objectFlow Id="92c708b9-2225-4791-905e-afb17832207d" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <objectNodeMoniker Id="8a261a39-79f0-4b5e-9f1f-8ac1c0d558a9" LastKnownName="Set" />
+                <elementDefinition Id="4c15e9e0-582f-4f73-90ce-e3569516202a" />
+              </objectFlow>
+            </objectFlowTargets>
+            <upperBound>
+              <literalInteger Id="0f2f945f-c473-47d7-a0d5-f293f4648d1f" name="2147483647" value="2147483647">
+                <elementDefinition Id="b17f444b-3974-47b6-b635-34479310a3c9" />
+              </literalInteger>
+            </upperBound>
+          </objectNode>
+          <objectNode Id="28ad5b69-e66f-4616-97c1-b8735b569ed6" name="Sets" isLeaf="false" ordering="Unordered" isControlType="false">
+            <elementDefinition Id="6a3af152-bbb4-4f2e-927c-ca84a4e4b49f" />
+            <objectFlowTargets>
+              <objectFlow Id="ef329adf-b95a-4892-a242-a168ea1d62a3" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <objectNodeMoniker Id="49c3b4d9-614a-486a-a22f-63496ee38ff3" LastKnownName="Create set" />
+                <elementDefinition Id="6ac34d46-afa2-4823-acde-79b3323d1172" />
+              </objectFlow>
+              <objectFlow Id="b771cc84-0e5f-4df3-9ff2-5096fbf663ad" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <objectNodeMoniker Id="8a261a39-79f0-4b5e-9f1f-8ac1c0d558a9" LastKnownName="Set" />
+                <elementDefinition Id="63ed1163-c9d9-4d78-b02d-a6a21e36205a" />
+              </objectFlow>
+            </objectFlowTargets>
+            <upperBound>
+              <literalInteger Id="1801be14-70f1-4b79-a94e-1aa4c52e2636" name="2147483647" value="2147483647">
+                <elementDefinition Id="9255e288-508b-44a1-a651-be3044fbce4f" />
+              </literalInteger>
+            </upperBound>
+          </objectNode>
+          <objectNode Id="49c3b4d9-614a-486a-a22f-63496ee38ff3" name="Create set" isLeaf="false" ordering="Unordered" isControlType="false">
+            <elementDefinition Id="7cbdbe2d-2d7d-4720-82bd-51038081195a" />
+            <objectFlowTargets>
+              <objectFlow Id="3ad8b546-1843-4f4c-a233-6ae812df2c15" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <objectNodeMoniker Id="8a261a39-79f0-4b5e-9f1f-8ac1c0d558a9" LastKnownName="Set" />
+                <elementDefinition Id="cc441c80-10f2-4f24-bed0-57b317235555" />
+              </objectFlow>
+            </objectFlowTargets>
+            <upperBound>
+              <literalInteger Id="e5d0d5be-ae88-49be-beed-1e8f498be56a" name="2147483647" value="2147483647">
+                <elementDefinition Id="96824547-2184-4d03-b44e-45632a3acb98" />
+              </literalInteger>
+            </upperBound>
+          </objectNode>
+          <objectNode Id="b9bd4bc9-5fe2-4778-8828-150aa06e4107" name="Features" isLeaf="false" ordering="Unordered" isControlType="false">
+            <elementDefinition Id="fbb23c58-07fc-4e8b-b9a4-97319eb7ba79" />
+            <upperBound>
+              <literalInteger Id="34f66e54-fc59-40ec-beec-06e3cb135bcb" name="2147483647" value="2147483647">
+                <elementDefinition Id="16d86b57-c7f5-42f4-9e0f-47ebce23cb89" />
+              </literalInteger>
+            </upperBound>
+          </objectNode>
+          <objectNode Id="8a261a39-79f0-4b5e-9f1f-8ac1c0d558a9" name="Set" isLeaf="false" ordering="Unordered" isControlType="false">
+            <elementDefinition Id="2972f708-2081-4509-a6b1-3d3a19a0e253" />
+            <objectFlowTargets>
+              <objectFlow Id="bb957f06-0f97-4f60-b00a-ba01bb7c5e54" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <objectNodeMoniker Id="150f8b6f-85de-4843-b40f-a80fb4ba3714" LastKnownName="Create Item" />
+                <elementDefinition Id="e69e2de2-b6a1-433b-bd11-66cdbd119c38" />
+              </objectFlow>
+              <objectFlow Id="2305935b-0ea6-4207-8ee0-ea24e45d7135" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <objectNodeMoniker Id="a01474a1-ae4c-425d-9b95-33b45fa97383" LastKnownName="Item" />
+                <elementDefinition Id="76d64ee4-f4d6-416a-851a-2e0403a1fa25" />
+              </objectFlow>
+            </objectFlowTargets>
+            <upperBound>
+              <literalInteger Id="e8f15cf7-c7fc-4c6d-b644-af0968e2c834" name="2147483647" value="2147483647">
+                <elementDefinition Id="b103b0e3-1d59-4f00-93bc-de844fd78c4b" />
+              </literalInteger>
+            </upperBound>
+          </objectNode>
+          <objectNode Id="150f8b6f-85de-4843-b40f-a80fb4ba3714" name="Create Item" isLeaf="false" ordering="Unordered" isControlType="false">
+            <elementDefinition Id="bf9dd280-bd82-43fb-8cc6-f0c06e9af7ea" />
+            <objectFlowTargets>
+              <objectFlow Id="11296901-0322-4136-88a2-d021c3bb2fde" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <objectNodeMoniker Id="5a8ceb75-b490-4963-b954-21ae34e61699" LastKnownName="Edit Item" />
+                <elementDefinition Id="cd64d903-5ee6-4a95-815a-b7458d220237" />
+              </objectFlow>
+            </objectFlowTargets>
+            <upperBound>
+              <literalInteger Id="18d8bf8a-9390-4bf6-90f0-d779a63be564" name="2147483647" value="2147483647">
+                <elementDefinition Id="434c9b1a-1c7f-4a49-8117-a75448993b68" />
+              </literalInteger>
+            </upperBound>
+          </objectNode>
+          <objectNode Id="a01474a1-ae4c-425d-9b95-33b45fa97383" name="Item" isLeaf="false" ordering="Unordered" isControlType="false">
+            <elementDefinition Id="f54b801e-4a9a-40fb-980f-ffb1815de872" />
+            <objectFlowTargets>
+              <objectFlow Id="a3cf3466-ffdc-45c3-b07c-6a4cbe7469c5" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <objectNodeMoniker Id="5a8ceb75-b490-4963-b954-21ae34e61699" LastKnownName="Edit Item" />
+                <elementDefinition Id="131b05ce-80c9-4326-8826-9b112e208776" />
+              </objectFlow>
+            </objectFlowTargets>
+            <upperBound>
+              <literalInteger Id="a2d7e56a-d1c9-402a-860b-1df2a0479592" name="2147483647" value="2147483647">
+                <elementDefinition Id="87a07369-d6a6-484f-a7ec-ca86daa0fa7c" />
+              </literalInteger>
+            </upperBound>
+          </objectNode>
+          <objectNode Id="5a8ceb75-b490-4963-b954-21ae34e61699" name="Edit Item" isLeaf="false" ordering="Unordered" isControlType="false">
+            <elementDefinition Id="3dcb2390-f164-43de-a095-2824c5393aa5" />
+            <upperBound>
+              <literalInteger Id="9af4ff3c-6f6b-4992-941b-02be1e1b0f2a" name="2147483647" value="2147483647">
+                <elementDefinition Id="55b7a71d-4f93-475f-9d55-b1574d1bb23a" />
+              </literalInteger>
+            </upperBound>
+          </objectNode>
+        </nodes>
+      </activity>
+    </activityRootModelHasActivity>
+  </packagedElements>
+  <package Id="097e7f8c-7366-4d02-bace-4d7b7defda98" name="GMDroidDesign">
+    <elementDefinition Id="1dacf72e-22d7-47a8-86af-4de01a15a487" />
+  </package>
+</activityRootModel>
