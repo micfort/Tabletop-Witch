@@ -1,0 +1,14 @@
+{
+    "applications": {
+        "TABLETOP WITCH": {
+            "applicationId": "14Q2hQn42Q77RxuEb19PghEVKWPfsr6UdSJCKxjc", 
+            "masterKey": "OY4EfESu8ur3bVHqRclv8yMyG8XneUzUDwCKiTmm"
+        }, 
+        "_default": {
+            "link": "TABLETOP WITCH"
+        }
+    }, 
+    "global": {
+        "parseVersion": "1.2.18"
+    }
+}

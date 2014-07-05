@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<%- include header.ejs %>
+<body>
+
+<%- include menu.ejs %>
+
+<div class="container">
+	<h2>REGISTER</h2>
+	<% if(error !== null) { %>
+	<p class="bg-danger"><%= error %></p>
+	<% } %>
+
+	<% if(succes !== null) { %>
+	<p class="bg-success"><%= succes %></p>
+	<% } else { %>
+	<form class="form-horizontal" role="form" action="/register" method="post" id="register-form">
+		<div class="form-group">
+			<label for="input-register-Username" class="col-sm-2 control-label">Username</label>
+
+			<div class="col-sm-10">
+				<input type="text" class="form-control" name="username" placeholder="Username">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="input-register-Password" class="col-sm-2 control-label">Password</label>
+
+			<div class="col-sm-10">
+				<input type="password" class="form-control" name="password" placeholder="Password">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="input-register-mail" class="col-sm-2 control-label">E-mail</label>
+
+			<div class="col-sm-10">
+				<input type="email" class="form-control" name="mail" placeholder="e-mail">
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-10">
+				<button class="btn btn-default" id="register-btn">Register</button>
+			</div>
+		</div>
+	</form>
+	<% } %>
+
+</div>
+
+<%- include includejs.ejs %>
+
+</body>
+</html>
