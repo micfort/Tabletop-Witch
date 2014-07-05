@@ -125,3 +125,18 @@ function ChangePage(page)
 		}
 	});
 }
+
+function UpdateMenuView(state)
+{
+	for (var key in LoadPageData)
+	{
+		if(LoadPageData[key].visibilityState[state])
+		{
+			LoadPageData[key].navbarItem.removeClass("hidden");
+		}
+		else
+		{
+			LoadPageData[key].navbarItem.addClass("hidden");
+		}
+	}
+}

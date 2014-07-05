@@ -4,6 +4,7 @@
 LoadPageData["sets.html"] =
 {
 	navbarItem: $("li.link[data-goto='sets.html']"),
+	visibilityState: {"loggedIn": true, "loggedOut": false},
 	ready: function()
 	{
 		var currentUser = Parse.User.current();

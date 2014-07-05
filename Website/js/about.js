@@ -4,6 +4,7 @@
 LoadPageData["about.html"] =
 {
 	navbarItem: $("li.link[data-goto='about.html']"),
+	visibilityState: {"loggedIn": true, "loggedOut": true},
 	ready: function()
 	{
 

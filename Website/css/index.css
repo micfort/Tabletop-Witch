@@ -21,9 +21,10 @@ body {
 	margin: 0pt 0pt 20pt 0pt;
 	padding: 5pt 5pt 5pt 5pt;
 	font-size: x-large;
+	background-color: #f39c12;
 }
 
-.feature1 {
+/*.feature1 {
 	background-color: #f1c40f;
 }
 .feature2 {
@@ -34,7 +35,7 @@ body {
 }
 .feature4 {
 	background-color: #c0392b;
-}
+}*/
 
 .navbar-default {
 	background-color: #d35400;

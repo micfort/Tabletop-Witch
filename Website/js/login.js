@@ -4,6 +4,7 @@
 LoadPageData["login.html"] =
 {
 	navbarItem: $("li.link[data-goto='login.html']"),
+	visibilityState: {"loggedIn": false, "loggedOut": true},
 	ready: function()
 	{
 		$("#btn-login").on('click', function()
@@ -13,8 +14,7 @@ LoadPageData["login.html"] =
 				success: function(user) {
 					ChangePage("home.html");
 					$("#logout-username").text(user.get("username"));
-					LoadPageData["logout.html"].navbarItem.removeClass("collapse");
-					LoadPageData["login.html"].navbarItem.addClass("collapse");
+					UpdateMenuView("loggedIn");
 				},
 				error: function(user, error) {
 					alert("An error has occurred: " + JSON.stringify(error) + "!!");
