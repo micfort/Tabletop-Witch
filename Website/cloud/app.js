@@ -11,6 +11,7 @@ if (runOnParse == false)
 	var Parse = require("parse-cloud").Parse;
 	global.Parse = Parse;
 	Parse.initialize("14Q2hQn42Q77RxuEb19PghEVKWPfsr6UdSJCKxjc", "qpK5SxyggMmZqQ8tqNM60TRQPDaHVrMlzBdG0lUk", "OY4EfESu8ur3bVHqRclv8yMyG8XneUzUDwCKiTmm");
+	Parse.User.logIn("micfort", "mrf;1117", {success: function (user) {},error: function (user, error){}});
 
 	app.use(express.static('public'));
 }
@@ -129,8 +130,6 @@ app.get('/sets', function (req, res)
 			res.render('sets', GGVRO({ list: null, error: "Error: " + error.code + " " + error.message }));
 		}
 	});
-
-
 });
 
 // // This is an example of hooking up a request handler with a specific request

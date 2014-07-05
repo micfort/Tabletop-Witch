@@ -14,10 +14,9 @@
 	<h3>Your sets:</h3>
 	<% if(list != null) { %>
 		<% for(var i = 0; i < list.length; i++) {%>
-			<p><%= list[i].get("name") %></p>
+			<p><a href="/set?id=<%= list[i].id %>"><%= list[i].get("name") %></a></p>
 		<% } %>
 	<% } %>
-	<span id="sets-list"></span>
 </div>
 
 <%- include includejs.ejs %>
