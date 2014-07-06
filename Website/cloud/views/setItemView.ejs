@@ -6,7 +6,7 @@
 <%- include menu.ejs %>
 
 <div class="container">
-	<h2><%= className %>: <%= data != null?data.Name:"" %></h2>
+	<h2><%= className %>: <%= data != null ? data.Name : "" %></h2>
 	<% if(error !== null) { %>
 	<p class="bg-danger"><%= error %></p>
 	<% } %>
@@ -17,13 +17,13 @@
 <%- include includejs.ejs %>
 
 <script type="text/javascript">
-$(document).ready(function()
-{
-	<% if(data != null) { %>
-	var data = <%- JSON.stringify(data) %>;
-	$("#view").html(JSON.stringify(data));
-	<% } %>
-});
+	$(document).ready(function ()
+	{
+		<% if(data != null && viewers != null) { %>
+		var data = <%- JSON.stringify(data) %>;
+		<%- viewers["html"] %>
+		<% } %>
+	});
 </script>
 
 </body>

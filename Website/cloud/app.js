@@ -11,7 +11,7 @@ if (runOnParse == false)
 	var Parse = require("parse-cloud").Parse;
 	global.Parse = Parse;
 	Parse.initialize("14Q2hQn42Q77RxuEb19PghEVKWPfsr6UdSJCKxjc", "qpK5SxyggMmZqQ8tqNM60TRQPDaHVrMlzBdG0lUk", "OY4EfESu8ur3bVHqRclv8yMyG8XneUzUDwCKiTmm");
-
+	Parse.User.logIn("micfort", "test", {success: function (user) {},error: function (user, error){}});
 
 	app.use(express.static('public'));
 }
@@ -171,11 +171,11 @@ app.get('/setItem', function(req, res)
 		success:function(setItem)
 		{
 			var classification = setItem.get("classification");
-			res.render('setItemView', GGVRO({ data: setItem.get("Description"), script: null, className: classification.get("name"), error: null }));
+			res.render('setItemView', GGVRO({ data: setItem.get("Description"), viewers: classification.get("viewer"), className: classification.get("name"), error: null }));
 		},
 		error: function(error)
 		{
-			res.render('setItemView', GGVRO({ data: null, script: null, className: null, error: "Error: " + error.code + " " + error.message}));
+			res.render('setItemView', GGVRO({ data: null, viewers: null, className: null, error: "Error: " + error.code + " " + error.message}));
 		}
 	});
 });
