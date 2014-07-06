@@ -11,7 +11,7 @@ if (runOnParse == false)
 	var Parse = require("parse-cloud").Parse;
 	global.Parse = Parse;
 	Parse.initialize("14Q2hQn42Q77RxuEb19PghEVKWPfsr6UdSJCKxjc", "qpK5SxyggMmZqQ8tqNM60TRQPDaHVrMlzBdG0lUk", "OY4EfESu8ur3bVHqRclv8yMyG8XneUzUDwCKiTmm");
-	Parse.User.logIn("micfort", "mrf;1117", {success: function (user) {},error: function (user, error){}});
+
 
 	app.use(express.static('public'));
 }
@@ -128,6 +128,54 @@ app.get('/sets', function (req, res)
 		error: function(error)
 		{
 			res.render('sets', GGVRO({ list: null, error: "Error: " + error.code + " " + error.message }));
+		}
+	});
+});
+
+app.get('/set', function (req, res)
+{
+	var Set = Parse.Object.extend("Set");
+	var SetQuery = new Parse.Query(Set);
+	SetQuery.get(req.query.id, {
+		success: function(set_)
+		{
+			var SetItem = Parse.Object.extend("SetItem");
+			var SetItemQuery = new Parse.Query(SetItem);
+			SetItemQuery.equalTo("Set",set_);
+
+			SetItemQuery.find({
+				success:function(results)
+				{
+					res.render('set', GGVRO({ list: results, error: null, setName: set_.get("name") }));
+				},
+				error: function(error)
+				{
+					res.render('set', GGVRO({ list: null, error: "Error: " + error.code + " " + error.message, setName: "" }));
+				}
+			});
+		},
+		error: function(object, error) {
+			res.render('set', GGVRO({ list: null, error: "Error: " + error.code + " " + error.message, setName: "" }));
+		}
+	});
+
+
+});
+
+app.get('/setItem', function(req, res)
+{
+	var SetItem = Parse.Object.extend("SetItem");
+	var SetItemQuery = new Parse.Query(SetItem);
+	SetItemQuery.include("classification");
+	SetItemQuery.get(req.query.id, {
+		success:function(setItem)
+		{
+			var classification = setItem.get("classification");
+			res.render('setItemView', GGVRO({ data: setItem.get("Description"), script: null, className: classification.get("name"), error: null }));
+		},
+		error: function(error)
+		{
+			res.render('setItemView', GGVRO({ data: null, script: null, className: null, error: "Error: " + error.code + " " + error.message}));
 		}
 	});
 });

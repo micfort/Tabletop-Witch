@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<%- include header.ejs %>
+<body>
+
+<%- include menu.ejs %>
+
+<div class="container">
+	<h2>SETS</h2>
+	<% if(error !== null) { %>
+		<p class="bg-danger"><%= error %></p>
+	<% } %>
+
+	<h3>Set <%= setName %></h3>
+	<% if(list != null) { %>
+		<% for(var i = 0; i < list.length; i++) {%>
+			<p><a href="/setItem?id=<%= list[i].id %>"><%= list[i].get("Description").Name %></a></p>
+		<% } %>
+	<% } %>
+</div>
+
+<%- include includejs.ejs %>
+
+</body>
+</html>

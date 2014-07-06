@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<%- include header.ejs %>
+<body>
+
+<%- include menu.ejs %>
+
+<div class="container">
+	<h2><%= className %>: <%= data != null?data.Name:"" %></h2>
+	<% if(error !== null) { %>
+	<p class="bg-danger"><%= error %></p>
+	<% } %>
+
+	<div id="view"></div>
+</div>
+
+<%- include includejs.ejs %>
+
+<script type="text/javascript">
+$(document).ready(function()
+{
+	<% if(data != null) { %>
+	var data = <%- JSON.stringify(data) %>;
+	$("#view").html(JSON.stringify(data));
+	<% } %>
+});
+</script>
+
+</body>
+</html>
