@@ -132,6 +132,31 @@ app.get('/sets', function (req, res)
 	});
 });
 
+app.get('/setCreate', function(req, res)
+{
+	res.render('setCreate', GGVRO({ error: null, name: null }));
+});
+
+app.post('/setCreate', function(req, res)
+{
+	var Set = Parse.Object.extend("Set");
+	var set_ = new Set();
+	set_.set("name", req.body.name);
+	set_.set("owner", Parse.User.current());
+	set_.save(null,{
+		success:function(set_)
+		{
+			res.status(303);
+			res.set("Location", "/set?id="+set_.id);
+			res.send("Redirect");
+		},
+		error: function (set_, error)
+		{
+			res.render('setCreate', GGVRO({ error: "Error: " + error.code + " " + error.message, name: req.body.name }));
+		}
+	})
+});
+
 app.get('/set', function (req, res)
 {
 	var Set = Parse.Object.extend("Set");
@@ -179,24 +204,6 @@ app.get('/setItem', function(req, res)
 		}
 	});
 });
-
-// // This is an example of hooking up a request handler with a specific request
-// // path and HTTP verb using the Express routing API.
-// app.get('/hello', function(req, res) {
-//   res.render('hello', { message: 'Congrats, you just set up your app!' });
-// });
-
-// // Example reading from the request query string of an HTTP get request.
-// app.get('/test', function(req, res) {
-//   // GET http://example.parseapp.com/test?message=hello
-//   res.send(req.query.message);
-// });
-
-// // Example reading from the request body of an HTTP post request.
-// app.post('/test', function(req, res) {
-//   // POST http://example.parseapp.com/test (with request body "message=hello")
-//   res.send(req.body.message);
-// });
 
 // Attach the Express app to Cloud Code.
 if (runOnParse == true)
