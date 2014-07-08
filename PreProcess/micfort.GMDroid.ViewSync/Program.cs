@@ -129,11 +129,19 @@ namespace micfort.GMDroid.ViewSync
 				{
 					succes = false;
 				}
+
+				if (args.Length == 2)
+				{
+					workDirectory = args [1];
+				}
 			}
 
 			if (!succes)
 			{
-				Console.WriteLine ("Usage: ViewSync <Action>");
+				Console.WriteLine ("Usage: ViewSync <Action> [work directory]");
+				Console.WriteLine ("Action:");
+				Console.WriteLine ("- download (download all the files, will first delete the whole directory)");
+				Console.WriteLine ("- upload (upload all the files that are in the work directory)");
 			}
 		}
 	}
