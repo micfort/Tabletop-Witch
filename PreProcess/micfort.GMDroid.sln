@@ -14,6 +14,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "micfort.GMDroid.DnD4.Monste
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "micfort.GMDroid.DnD4.Downloader", "micfort.GMDroid.DnD4.Downloader\micfort.GMDroid.DnD4.Downloader.csproj", "{A1728D58-D5D7-476C-B806-0271E7C4B555}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "micfort.GMDroid.ViewSync", "micfort.GMDroid.ViewSync\micfort.GMDroid.ViewSync.csproj", "{A1AF4C22-1759-4AC3-8BA9-DDC65F281930}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,17 +23,23 @@ Global
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{2324A606-FD0C-47D2-AF85-4AE72394023E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2324A606-FD0C-47D2-AF85-4AE72394023E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2324A606-FD0C-47D2-AF85-4AE72394023E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2324A606-FD0C-47D2-AF85-4AE72394023E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F8973740-EAAD-40E8-A8F5-8BF7CF1294B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F8973740-EAAD-40E8-A8F5-8BF7CF1294B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F8973740-EAAD-40E8-A8F5-8BF7CF1294B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F8973740-EAAD-40E8-A8F5-8BF7CF1294B7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A1728D58-D5D7-476C-B806-0271E7C4B555}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A1728D58-D5D7-476C-B806-0271E7C4B555}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A1728D58-D5D7-476C-B806-0271E7C4B555}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A1728D58-D5D7-476C-B806-0271E7C4B555}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1AF4C22-1759-4AC3-8BA9-DDC65F281930}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1AF4C22-1759-4AC3-8BA9-DDC65F281930}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1AF4C22-1759-4AC3-8BA9-DDC65F281930}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1AF4C22-1759-4AC3-8BA9-DDC65F281930}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8973740-EAAD-40E8-A8F5-8BF7CF1294B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8973740-EAAD-40E8-A8F5-8BF7CF1294B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8973740-EAAD-40E8-A8F5-8BF7CF1294B7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = micfort.GMDroid.ViewSync\micfort.GMDroid.ViewSync.csproj
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

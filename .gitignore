@@ -172,6 +172,12 @@ UpgradeLog*.htm
 
 # Microsoft Fakes
 FakesAssemblies/
-/GMDroid/.idea
+
+# webstorm IDE
+.idea/
+
+# Cordova
 /GMDroid/platforms
-/Website/.idea
+
+# npm modules
+node_modules/
