@@ -1,8 +1,10 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="micfort.GMDroid.ViewSync/Program.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="micfort.GMDroid.PF/Program.cs">
     <Files>
-      <File FileName="micfort.GMDroid.ViewSync/Program.cs" Line="89" Column="1" />
+      <File FileName="micfort.GMDroid.PF/Feats/ProcessFeats.cs" Line="43" Column="29" />
+      <File FileName="micfort.GMDroid.PF/TypeConverter/BoolConverter.cs" Line="21" Column="8" />
+      <File FileName="micfort.GMDroid.PF/Program.cs" Line="32" Column="4" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

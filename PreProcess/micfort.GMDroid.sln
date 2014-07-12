@@ -23,6 +23,7 @@ Global
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{2324A606-FD0C-47D2-AF85-4AE72394023E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2324A606-FD0C-47D2-AF85-4AE72394023E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2324A606-FD0C-47D2-AF85-4AE72394023E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2324A606-FD0C-47D2-AF85-4AE72394023E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A1728D58-D5D7-476C-B806-0271E7C4B555}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -39,7 +40,11 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = micfort.GMDroid.ViewSync\micfort.GMDroid.ViewSync.csproj
+		StartupItem = micfort.GMDroid.PF\micfort.GMDroid.PF.csproj
+		Policies = $0
+		$0.DotNetNamingPolicy = $1
+		$1.DirectoryNamespaceAssociation = None
+		$1.ResourceNamePolicy = FileFormatDefault
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
