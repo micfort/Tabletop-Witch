@@ -62,12 +62,13 @@ namespace micfort.GMDroid.ViewSync
 				{
 
 				}
+				Environment.Exit(0);
 			}
 			catch (Exception ex)
 			{
                 ErrorReporting.Instance.ReportFatalT("main", "Exception", ex);
+				Environment.Exit(1);
 			}
-            Console.ReadKey();
 		}
 
 		private static async Task PullInformation()
@@ -149,22 +150,27 @@ namespace micfort.GMDroid.ViewSync
 					List<string> files = new List<string>(Directory.GetFiles (classificationPath, "*.js"));
 					foreach (var file in files)
 					{
-                        if (file.StartsWith("view"))
+						string filename = Path.GetFileNameWithoutExtension(file);
+                        if (filename.StartsWith("view"))
                         {
+							string viewName = filename.Substring("view_".Length);
+							ErrorReporting.Instance.ReportInfoT(classification.Get<string>("name"), string.Format("Reading view {0}", viewName));
+
                             string code = File.ReadAllText(file);
-                            string viewName = Path.GetFileNameWithoutExtension(file);
                             views[viewName] = code;
                         }
-                        else if (file.StartsWith("editor"))
+                        else if (filename.StartsWith("editor"))
                         {
+							string editorName = filename.Substring("editor_".Length);
+							ErrorReporting.Instance.ReportInfoT(classification.Get<string>("name"), string.Format("Reading editor {0}", editorName));
+
                             string code = File.ReadAllText(file);
-                            string viewName = Path.GetFileNameWithoutExtension(file);
-                            editors[viewName] = code;
+							editors[editorName] = code;
                         }
 					}
 					classification["viewer"] = views;
                     classification["editor"] = editors;
-                    ErrorReporting.Instance.ReportWarnT(classification.Get<string>("name"), "Saving to server");
+					ErrorReporting.Instance.ReportInfoT(classification.Get<string>("name"), "Saving to server");
 					await classification.SaveAsync();
 				}
 			}
