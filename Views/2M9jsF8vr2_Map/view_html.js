@@ -1,4 +1,4 @@
-$("#view").html("<canvas id='myCanvas' width='0' height='0'></canvas><div id='outputImage'></div>");
+$("#view").html("<canvas id='mapCanvas' width='0' height='0' style='display: none;'></canvas><div id='outputImage'></div>");
 
 var colorSet = ["#e41a1c","#377eb8","#4daf4a","#984ea3","#ff7f00","#ffff33","#a65628","#f781bf","#999999"];
 var symbolInfo = {offset:{x:0, y: -3}, font: "20px Calibri"};
@@ -35,9 +35,9 @@ var TotalSize =
 	y: map.cellSize.y*map.gridSize.y
 };
 
-var canvas = document.getElementById('myCanvas');
-$("#myCanvas").attr("width", TotalSize.x);
-$("#myCanvas").attr("height", TotalSize.y);
+var canvas = document.getElementById('mapCanvas');
+$(canvas).attr("width", TotalSize.x);
+$(canvas).attr("height", TotalSize.y);
 map.context = canvas.getContext('2d');
 
 map.context.beginPath();
@@ -77,4 +77,4 @@ for(var i = 0; i < map.symbolList.length; i++)
 console.log("finished drawing on canvas now showing in img tag");
 var dataUrl = canvas.toDataURL("image/png");
 console.log("data url = " + dataUrl);
-$("#image").html("<img src=\"" + dataUrl + "\" />");
+$("#outputImage").html("<img src=\"" + dataUrl + "\" />");

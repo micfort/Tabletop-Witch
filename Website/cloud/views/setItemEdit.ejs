@@ -6,7 +6,7 @@
 <%- include menu.ejs %>
 
 <div class="container">
-	<h2><%= className %>: <%= data != null ? data.Name : "" %></h2> <a href="/setItemEdit?id=<%= id %>">edit</a>
+	<h2><%= className %>: Edit <%= data != null ? data.Name : "" %></h2>
 	<% if(error !== null) { %>
 	<p class="bg-danger"><%= error %></p>
 	<% } %>
@@ -19,9 +19,9 @@
 <script type="text/javascript">
 	$(document).ready(function ()
 	{
-		<% if(data != null && viewers != null) { %>
+		<% if(data != null && editors != null) { %>
 		var data = <%- JSON.stringify(data) %>;
-		<%- viewers["html"] %>
+		<%- editors["html"] %>
 		<% } %>
 	});
 </script>

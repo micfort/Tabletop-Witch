@@ -11,7 +11,11 @@ if (runOnParse == false)
 	var Parse = require("parse-cloud").Parse;
 	global.Parse = Parse;
 	Parse.initialize("14Q2hQn42Q77RxuEb19PghEVKWPfsr6UdSJCKxjc", "qpK5SxyggMmZqQ8tqNM60TRQPDaHVrMlzBdG0lUk", "OY4EfESu8ur3bVHqRclv8yMyG8XneUzUDwCKiTmm");
-	Parse.User.logIn("micfort", "test", {success: function (user) {},error: function (user, error){}});
+	Parse.User.logIn("micfort", "test", {success: function (user)
+	{
+	}, error: function (user, error)
+	{
+	}});
 
 	app.use(express.static('public'));
 }
@@ -51,7 +55,7 @@ app.post('/login', function (req, res)
 	Parse.User.logIn(req.body.username, req.body.password, {
 		success: function (user)
 		{
-			res.render('login',GGVRO(
+			res.render('login', GGVRO(
 				{
 					error: null,
 					succes: "You have been logged in as " + req.body.username
@@ -81,14 +85,16 @@ app.post('/register', function (req, res)
 	user.set("email", req.body.mail);
 
 	user.signUp(null, {
-		success: function(user) {
+		success: function (user)
+		{
 			res.render('register', GGVRO(
 				{
 					error: null,
 					succes: "You have been registered as " + req.body.username
 				}));
 		},
-		error: function(user, error) {
+		error: function (user, error)
+		{
 			res.render('register', GGVRO(
 				{
 					error: "Error: " + error.code + " " + error.message,
@@ -118,36 +124,36 @@ app.get('/sets', function (req, res)
 {
 	var Set = Parse.Object.extend("Set");
 	var SetQuery = new Parse.Query(Set);
-	SetQuery.equalTo("owner",Parse.User.current());
+	SetQuery.equalTo("owner", Parse.User.current());
 
 	SetQuery.find({
-		success:function(results)
+		success: function (results)
 		{
 			res.render('sets', GGVRO({ list: results, error: null }));
 		},
-		error: function(error)
+		error: function (error)
 		{
 			res.render('sets', GGVRO({ list: null, error: "Error: " + error.code + " " + error.message }));
 		}
 	});
 });
 
-app.get('/setCreate', function(req, res)
+app.get('/setCreate', function (req, res)
 {
 	res.render('setCreate', GGVRO({ error: null, name: null }));
 });
 
-app.post('/setCreate', function(req, res)
+app.post('/setCreate', function (req, res)
 {
 	var Set = Parse.Object.extend("Set");
 	var set_ = new Set();
 	set_.set("name", req.body.name);
 	set_.set("owner", Parse.User.current());
-	set_.save(null,{
-		success:function(set_)
+	set_.save(null, {
+		success: function (set_)
 		{
 			res.status(303);
-			res.set("Location", "/set?id="+set_.id);
+			res.set("Location", "/set?id=" + set_.id);
 			res.send("Redirect");
 		},
 		error: function (set_, error)
@@ -162,24 +168,25 @@ app.get('/set', function (req, res)
 	var Set = Parse.Object.extend("Set");
 	var SetQuery = new Parse.Query(Set);
 	SetQuery.get(req.query.id, {
-		success: function(set_)
+		success: function (set_)
 		{
 			var SetItem = Parse.Object.extend("SetItem");
 			var SetItemQuery = new Parse.Query(SetItem);
-			SetItemQuery.equalTo("Set",set_);
+			SetItemQuery.equalTo("Set", set_);
 
 			SetItemQuery.find({
-				success:function(results)
+				success: function (results)
 				{
 					res.render('set', GGVRO({ list: results, error: null, setName: set_.get("name") }));
 				},
-				error: function(error)
+				error: function (error)
 				{
 					res.render('set', GGVRO({ list: null, error: "Error: " + error.code + " " + error.message, setName: "" }));
 				}
 			});
 		},
-		error: function(object, error) {
+		error: function (object, error)
+		{
 			res.render('set', GGVRO({ list: null, error: "Error: " + error.code + " " + error.message, setName: "" }));
 		}
 	});
@@ -187,20 +194,38 @@ app.get('/set', function (req, res)
 
 });
 
-app.get('/setItem', function(req, res)
+app.get('/setItem', function (req, res)
 {
 	var SetItem = Parse.Object.extend("SetItem");
 	var SetItemQuery = new Parse.Query(SetItem);
 	SetItemQuery.include("classification");
 	SetItemQuery.get(req.query.id, {
-		success:function(setItem)
+		success: function (setItem)
 		{
 			var classification = setItem.get("classification");
-			res.render('setItemView', GGVRO({ data: setItem.get("Description"), viewers: classification.get("viewer"), className: classification.get("name"), error: null }));
+			res.render('setItemView', GGVRO({ id: setItem.id, data: setItem.get("Description"), viewers: classification.get("viewer"), className: classification.get("name"), error: null }));
 		},
-		error: function(error)
+		error: function (error)
 		{
-			res.render('setItemView', GGVRO({ data: null, viewers: null, className: null, error: "Error: " + error.code + " " + error.message}));
+			res.render('setItemView', GGVRO({ id: null, data: null, viewers: null, className: null, error: "Error: " + error.code + " " + error.message}));
+		}
+	});
+});
+
+app.get('/setItemEdit', function (req, res)
+{
+	var SetItem = Parse.Object.extend("SetItem");
+	var SetItemQuery = new Parse.Query(SetItem);
+	SetItemQuery.include("classification");
+	SetItemQuery.get(req.query.id, {
+		success: function (setItem)
+		{
+			var classification = setItem.get("classification");
+			res.render('setItemEdit', GGVRO({ id: setItem.id, data: setItem.get("Description"), editors: classification.get("editor"), className: classification.get("name"), error: null }));
+		},
+		error: function (error)
+		{
+			res.render('setItemEdit', GGVRO({ id: null, data: null, viewers: null, className: null, error: "Error: " + error.code + " " + error.message}));
 		}
 	});
 });
