@@ -7,109 +7,127 @@
 <body>
 
 <div id="view"></div>
+<script type="text/javascript" src="js/lib/require.js"></script>
 <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script src="http://colorbrewer2.org/export/colorbrewer.js"></script>
 <script>
-
-	var data =
+	$(document).ready(function ()
 	{
-		"cellSize": {"x": 20, "y": 20},
-		"gridSize": {"x": 30, "y": 30},
+		//test data
+		var data =
+		{
+			"cellSize": {"x": 20, "y": 20},
+			"gridSize": {"x": 30, "y": 30},
 
-		"symbolList":
-				[
-					{"x":1, "y":1, "symbol":"1"},
-					{"x":1, "y":2, "symbol":"B"},
-					{"x":5, "y":3, "symbol":"M"}
-				],
+			"symbolList": [
+				{"x": 1, "y": 1, "symbol": "1"},
+				{"x": 1, "y": 2, "symbol": "B"},
+				{"x": 5, "y": 3, "symbol": "M"}
+			],
 
-		"wallList":
-			[
-				{"direction":"b", "x":1, "y":2},
-				{"direction":"b", "x":2, "y":2},
-				{"direction":"t", "x":3, "y":2},
-				{"direction":"r", "x":5, "y":2},
-				{"direction":"l", "x":9, "y":2}
+			"wallList": [
+				{"direction": "b", "x": 1, "y": 2},
+				{"direction": "b", "x": 2, "y": 2},
+				{"direction": "t", "x": 3, "y": 2},
+				{"direction": "r", "x": 5, "y": 2},
+				{"direction": "l", "x": 9, "y": 2}
 			]
-	};
+		};
 
-	$("#view").html("<canvas id='mapCanvas' width='0' height='0'></canvas>");
+		//html
+		$("#view").html("<canvas id='mapCanvas' width='0' height='0'></canvas>");
 
-	var colorSet = ["#e41a1c","#377eb8","#4daf4a","#984ea3","#ff7f00","#ffff33","#a65628","#f781bf","#999999"];
-	var symbolInfo = {offset:{x:0, y: -3}, font: "20px Calibri"};
-	var wallPositions = {
-		"b":{x1: 0, y1: 1, x2: 1, y2: 1},
-		"t":{x1: 0, y1: 0, x2: 1, y2: 0},
-		"l":{x1: 0, y1: 0, x2: 0, y2: 1},
-		"r":{x1: 1, y1: 0, x2: 1, y2: 1}
-	}
+		var mouse = {isDown: false, x: 0, y: 0};
 
-	function Symbol(map, symbol, position)
-	{
-		map.context.font = symbolInfo.font;
-		map.context.textAlign = "center";
-		map.context.fillStyle = colorSet[1];
+		//info is in data
+		var map = data;
 
-		map.context.fillText(symbol,
-						map.cellSize.x*(position.x+0.5)+symbolInfo.offset.x,
-						map.cellSize.y*(position.y+1.0)+symbolInfo.offset.y);
-	}
+		//getting canvas
+		var canvas = document.getElementById('mapCanvas');
 
-	function Wall(map, wall)
-	{
-		var direction = wallPositions[wall.direction];
-		map.context.moveTo((wall.x+direction.x1)*map.cellSize.x, (wall.y+direction.y1)*map.cellSize.y);
-		map.context.lineTo((wall.x+direction.x2)*map.cellSize.x, (wall.y+direction.y2)*map.cellSize.y);
-	}
+		// get mouse pos relative to canvas
+		function getMousePos(canvas, evt)
+		{
+			var rect = canvas.getBoundingClientRect();
+			return {
+				x: evt.clientX - rect.left,
+				y: evt.clientY - rect.top
+			};
+		}
 
-	var map = data;
+		function snapToGridPoints(map, p)
+		{
+			return {
+				x: Math.round(p.x / map.cellSize.x) * map.cellSize.x,
+				y: Math.round(p.y / map.cellSize.y) * map.cellSize.y
+			};
+		}
 
-	var TotalSize =
-	{
-		x: map.cellSize.x*map.gridSize.x,
-		y: map.cellSize.y*map.gridSize.y
-	};
+		function snapToCell(map, p)
+		{
+			var cell = {x: Math.floor(p.x / map.cellSize.x), y: Math.floor(p.y / map.cellSize.y)};
+			return cell;
+		}
 
-	var canvas = document.getElementById('mapCanvas');
-	$(canvas).attr("width", TotalSize.x);
-	$(canvas).attr("height", TotalSize.y);
-	map.context = canvas.getContext('2d');
+		function snapToSides(map, p)
+		{
+			var cell = snapToCell(map, p);
+			var inCellPosition = {x: p.x % map.cellSize.x, y: p.y % map.cellSize.y};
+		}
 
-	map.context.beginPath();
+		// when mouse button is clicked and held
+		$(canvas).on('mousemove', function (e)
+		{
+			var pos = getMousePos(canvas, e);
+			mouse.x = pos.x;
+			mouse.y = pos.y;
+			if (mouse.isDown === true)
+			{
 
-	//draw grid
-	for(var i = 1; i < map.gridSize.x; i++)
-	{
-		map.context.moveTo(i * map.cellSize.x, 0);
-		map.context.lineTo(i * map.cellSize.x, TotalSize.y);
-	}
+			}
+		});
 
-	for(var i = 1; i < map.gridSize.y; i++)
-	{
-		map.context.moveTo(0, i * map.cellSize.y);
-		map.context.lineTo(TotalSize.x, i * map.cellSize.y);
-	}
+		// when mouse button is clicked and held
+		$(canvas).on('mousedown', function (e)
+		{
+			if (mouse.isDown === false)
+			{
+				mouse.isDown = true;
 
-	map.context.strokeStyle = colorSet[9];
-	map.context.stroke();
+				var pos = getMousePos(canvas, e);
+				x1 = pos.x;
+				y1 = pos.y;
+			}
+		});
 
-	//draw walls
-	map.context.beginPath();
-	for(var i = 0; i < map.wallList.length; i++)
-	{
-		Wall(map, map.wallList[i]);
-	}
-	map.context.lineWidth = 3;
-	map.context.strokeStyle = colorSet[0];
-	map.context.stroke();
+		$(window).on('mouseup', function (e)
+		{
 
-	//draw symbols
-	for(var i = 0; i < map.symbolList.length; i++)
-	{
-		Symbol(map, map.symbolList[i].symbol, {x:map.symbolList[i].x, y:map.symbolList[i].y});
-	}
+			if (mouse.isDown === true)
+			{
 
-	console.log("finished drawing on canvas");
+				var pos = getMousePos(canvas, e);
+				x2 = pos.x;
+				y2 = pos.y;
+
+				mouse.isDown = false;
+
+				pos = snapToGrid(map, pos);
+
+				map.context.beginPath();
+				map.context.moveTo(pos.x - 5, pos.y - 5);
+				map.context.lineTo(pos.x + 5, pos.y + 5);
+				map.context.strokeStyle = colorSet[2];
+				map.context.lineWidth = 3;
+				map.context.stroke();
+			}
+		});
+
+		require(["js/TacticalMap.js"], function (tacticalMap)
+		{
+			tacticalMap.DrawMap(canvas, data);
+		});
+	});
 </script>
 
 </body>
