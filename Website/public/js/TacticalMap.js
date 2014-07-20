@@ -6,11 +6,12 @@ define(function()
 {
 	var colorSet = ["#e41a1c","#377eb8","#4daf4a","#984ea3","#ff7f00","#ffff33","#a65628","#f781bf","#999999"];
 	var symbolInfo = {offset:{x:0, y: -3}, font: "20px Calibri"};
+	var cD = 1;
 	var wallPositions = {
-		"b":{x1: 0, y1: 1, x2: 1, y2: 1},
-		"t":{x1: 0, y1: 0, x2: 1, y2: 0},
-		"l":{x1: 0, y1: 0, x2: 0, y2: 1},
-		"r":{x1: 1, y1: 0, x2: 1, y2: 1}
+		"b":{x1: 0, y1: 1, x2: 1, y2: 1, xT:  0, yT: -cD},
+		"t":{x1: 0, y1: 0, x2: 1, y2: 0, xT:  0, yT:  cD},
+		"l":{x1: 0, y1: 0, x2: 0, y2: 1, xT:  cD, yT: 0},
+		"r":{x1: 1, y1: 0, x2: 1, y2: 1, xT:  -cD, yT: 0}
 	}
 
 	function DrawSymbol(context, map, symbol, position)
@@ -27,8 +28,8 @@ define(function()
 	function DrawWall(context, map, wall)
 	{
 		var direction = wallPositions[wall.direction];
-		context.moveTo((wall.x + direction.x1) * map.cellSize.x, (wall.y + direction.y1) * map.cellSize.y);
-		context.lineTo((wall.x + direction.x2) * map.cellSize.x, (wall.y + direction.y2) * map.cellSize.y);
+		context.moveTo((wall.x + direction.x1) * map.cellSize.x + direction.xT, (wall.y + direction.y1) * map.cellSize.y + direction.yT);
+		context.lineTo((wall.x + direction.x2) * map.cellSize.x + direction.xT, (wall.y + direction.y2) * map.cellSize.y + direction.yT);
 	}
 
 	function DrawMap(canvas, map)
