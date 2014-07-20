@@ -13,107 +13,37 @@
 <script>
 	$(document).ready(function ()
 	{
-		require(["js/TacticalMap.js"], function (tacticalMap)
+		//test data
+		var data =
 		{
-			//test data
-			var data =
-			{
-				"cellSize": {"x": 40, "y": 40},
-				"gridSize": {"x": 15, "y": 15},
+			"cellSize": {"x": 40, "y": 40},
+			"gridSize": {"x": 15, "y": 15},
 
-				"symbolList": [
-					{"x": 1, "y": 1, "symbol": "1"},
-					{"x": 1, "y": 2, "symbol": "B"},
-					{"x": 5, "y": 3, "symbol": "M"}
-				],
+			"symbolList": [
+				{"x": 1, "y": 1, "symbol": "1"},
+				{"x": 1, "y": 2, "symbol": "B"},
+				{"x": 5, "y": 3, "symbol": "M"}
+			],
 
-				"wallList": [
-					{"direction": "b", "x": 1, "y": 2},
-					{"direction": "b", "x": 2, "y": 2},
-					{"direction": "t", "x": 3, "y": 2},
-					{"direction": "r", "x": 5, "y": 2},
-					{"direction": "l", "x": 9, "y": 2}
-				]
-			};
+			"wallList": [
+				{"direction": "b", "x": 1, "y": 2},
+				{"direction": "b", "x": 2, "y": 2},
+				{"direction": "t", "x": 3, "y": 2},
+				{"direction": "r", "x": 5, "y": 2},
+				{"direction": "l", "x": 9, "y": 2}
+			]
+		};
 
+		require([
+					"js/Systems/TacticalMap/Render.js",
+					"js/lib/text!views/Systems/TacticalMap/TacticalMapEditorView.ejs",
+					"js/Systems/TacticalMap/Editor.js"],
+				function (renderEngine, view, editor)
+		{
 			//html
-			$("#view").html('<p id="stateDescription"></p>' +
-					'<p><canvas id="mapCanvas" width="0" height="0"></canvas></p>' +
-					'<p>' +
-					'<button type="button" id="btnAddWalls">Add walls</button>' +
-					'<button type="button" id="btnRemoveWalls">Remove walls</button>' +
-					'<button type="button" id="btnAddSymbol">Add symbols</button>' +
-					'<button type="button" id="btnRemoveSymbol">Remove symbols</button>' +
-					'</p>' +
-					'<p><textarea id="taJsonMap" class="json" name="term" id="term" cols="80" rows="40"></textarea><button type="button" id="btnUpdate">Update screen</button></p>');
-
-			var EmptyState =
-			{
-				description: "",
-				click: function(x, y, direction) {}
-			};
-
-			var addWallState =
-			{
-				description: "Add walls...",
-				click: function(x, y, direction)
-				{
-					data.wallList[data.wallList.length] = {"direction": direction, "x": x, "y": y};
-					updateView();
-				}
-			};
-
-			var removeWallState =
-			{
-				description: "Remove walls...",
-				click: function(x, y, direction)
-				{
-					for(var i = 0; i < data.wallList.length; i++)
-					{
-						var tmp = data.wallList[i];
-						if(tmp["direction"] == direction && tmp["x"] == x && tmp["y"] == y)
-						{
-							data.wallList.splice(i, 1);
-						}
-					}
-					updateView();
-				}
-			};
-
-			var addSymbolState =
-			{
-				description: "Add symbols...",
-				click: function(x, y, direction)
-				{
-					var symbol = window.prompt("What symbol(s) do you want to add in this cell?","");
-					data.symbolList[data.symbolList.length] = {"symbol": symbol, "x": x, "y": y};
-					updateView();
-				}
-			};
-
-			var removeSymbolState =
-			{
-				description: "Remove symbols...",
-				click: function(x, y, direction)
-				{
-					for(var i = 0; i < data.symbolList.length; i++)
-					{
-						var tmp = data.symbolList[i];
-						if(tmp["x"] == x && tmp["y"] == y)
-						{
-							data.symbolList.splice(i, 1);
-						}
-					}
-					updateView();
-				}
-			};
-
-			var currentState;
+			$("#view").html(view);
 
 			var mouse = {isDown: false, x: 0, y: 0};
-
-			//info is in data
-			var map = data;
 
 			//getting canvas
 			var canvas = document.getElementById('mapCanvas');
@@ -168,15 +98,8 @@
 
 			function updateView()
 			{
-				tacticalMap.DrawMap(canvas, data);
+				renderEngine.DrawMap(canvas, data);
 				$("#taJsonMap").val(JSON.stringify(data, null, '\t'));
-			}
-
-			function changeState(newState)
-			{
-				currentState = newState;
-				$('#stateDescription').html(currentState.description);
-				console.log("change state");
 			}
 
 			// when mouse button is clicked and held
@@ -209,43 +132,20 @@
 				if (mouse.isDown === true)
 				{
 					var pos = getMousePos(canvas, e);
-
 					mouse.isDown = false;
 
-					var direction = snapToSides(map, pos);
-					var cell = snapToCell(map, pos);
-					currentState.click(cell.x, cell.y, direction);
+					var direction = snapToSides(data, pos);
+					var cell = snapToCell(data, pos);
 
-					/*pos = snapToGridPoints(map, pos);
-
-					 var context = canvas.getContext('2d');
-					 context.beginPath();
-					 context.moveTo(pos.x - 5, pos.y - 5);
-					 context.lineTo(pos.x + 5, pos.y + 5);
-					 context.strokeStyle = "#FFFFFF";
-					 context.lineWidth = 3;
-					 context.stroke();*/
+					editor.currentState.click(data, cell.x, cell.y, direction);
+					updateView();
 				}
 			});
 
-			$("#btnAddWalls").on('click', function(e)
+			$(".btnStateChange").on('click', function(e)
 			{
-				changeState(addWallState);
-			});
-
-			$("#btnRemoveWalls").on('click', function(e)
-			{
-				changeState(removeWallState);
-			});
-
-			$("#btnAddSymbol").on('click', function(e)
-			{
-				changeState(addSymbolState);
-			});
-
-			$("#btnRemoveSymbol").on('click', function(e)
-			{
-				changeState(removeSymbolState);
+				editor.changeState($(this).data("new-state"), $('#stateDescription'));
+				updateView();
 			});
 
 			$("#btnUpdate").on('click', function(e)
@@ -253,8 +153,6 @@
 				data = JSON.parse($("#taJsonMap").val());
 				updateView();
 			});
-
-			changeState(EmptyState);
 			updateView();
 		});
 	});
